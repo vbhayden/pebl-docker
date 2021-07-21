@@ -11,7 +11,7 @@ WORKDIR /srv/
 #RUN npm install --production
 RUN npm install --production && npm run compile
 
-COPY dockerConfig/startServices.sh /srv/startServices.sh
+COPY pebl-services/dockerConfig/startServices.sh /srv/startServices.sh
 RUN chmod 755 /srv/startServices.sh
 
 #COPY pebl-services/dist /srv/dist/
