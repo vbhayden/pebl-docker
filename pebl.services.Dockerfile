@@ -9,7 +9,7 @@ COPY pebl-services/ca.pem /ssl/ca.pem
 WORKDIR /srv/
 
 #RUN npm install --production
-RUN npm install --production && npm install typescript typescript-formatter --save-dev && npm run compile
+RUN npm install --production && npm install -g typescript typescript-formatter && npm run compile
 
 COPY pebl-services/dockerConfig/startServices.sh /srv/startServices.sh
 RUN chmod 755 /srv/startServices.sh
