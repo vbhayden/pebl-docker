@@ -5,6 +5,7 @@ services:
   pebl-reader-nginx:
     build:
       context: .
+      dockerfile: pebl.reader.Dockerfile
     sysctls:
       - net.core.somaxconn=4096
     restart: always
@@ -50,14 +51,14 @@ services:
 
   pebl-services:
     build:
-      context: pebl-services
-      dockerfile: DockerfileServices
+      context: .
+      dockerfile: pebl.services.Dockerfile
     ports:
       - "${SERVICE_PORT}:${SERVICE_PORT}"
     restart: always
     environment:
       SERVER_NAME: $SERVER_NAME
-      CONSUMING_DOMAINS: *
+      CONSUMING_DOMAINS: "*"
       AUTH_PROVIDER_URL: https://${AUTH_DOMAIN}/auth/realms/${AUTH_REALM}
       AUTH_CLIENT_SECRET: $AUTH_CLIENT_SECRET
       AUTH_CLIENT_ID: $AUTH_CLIENT_ID
@@ -79,8 +80,8 @@ services:
 
   redis:
     build:
-      context: pebl-services
-      dockerfile: DockerfileRedis
+      context: .
+      dockerfile: pebl.redis.Dockerfile
     environment:
       - "REDIS_AUTH=testing"
     sysctls:
