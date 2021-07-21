@@ -17,7 +17,7 @@ announce "Curl"
 if ! [ -x "$(command -v curl)" ]; then
 	
 	# Curl is easy
-	apt-get install curl
+	apt-get install -y curl
 	
 else
 	echo "Skipping, Curl already installed!"
