@@ -44,7 +44,7 @@ services:
       - ./certbot/etc:/etc/letsencrypt
       - ./certbot/log:/var/log/letsencrypt
     depends_on:
-      - nginx
+      - pebl-reader-nginx
     networks:
       - public
 
@@ -57,7 +57,7 @@ services:
     restart: always
     environment:
       SERVER_NAME: $SERVER_NAME
-      CONSUMING_DOMAINS: *
+      CONSUMING_DOMAINS: "*"
       AUTH_PROVIDER_URL: https://${AUTH_DOMAIN}/auth/realms/${AUTH_REALM}
       AUTH_CLIENT_SECRET: $AUTH_CLIENT_SECRET
       AUTH_CLIENT_ID: $AUTH_CLIENT_ID
