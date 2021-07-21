@@ -45,7 +45,7 @@ services:
       - ./certbot/etc:/etc/letsencrypt
       - ./certbot/log:/var/log/letsencrypt
     depends_on:
-      - nginx
+      - pebl-reader-nginx
     networks:
       - public
 
