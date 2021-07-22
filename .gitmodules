@@ -1,6 +1,0 @@
-[submodule "pebl-services"]
-	path = pebl-services
-	url = https://github.com/vbhayden/pebl-services
-[submodule "pebl-reader"]
-	path = pebl-reader
-	url = https://github.com/vbhayden/pebl-reader
