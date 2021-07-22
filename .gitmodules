@@ -1,0 +1,8 @@
+[submodule "pebl-reader"]
+	path = pebl-reader
+	url = https://github.com/vbhayden/pebl-reader
+	branch = master
+[submodule "pebl-services"]
+	path = pebl-services
+	url = https://github.com/vbhayden/pebl-services
+	branch = master
