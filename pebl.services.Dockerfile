@@ -1,20 +1,21 @@
 FROM node:14.7.0
 
-COPY pebl-services/package.json /srv/
-COPY pebl-services/package-lock.json /srv/
 COPY pebl-services/localhost.crt /ssl/fullchain.pem
 COPY pebl-services/localhost.key /ssl/privkey.pem
 COPY pebl-services/ca.pem /ssl/ca.pem
 
+COPY pebl-services /srv
+
 WORKDIR /srv/
 
-#RUN npm install --production
-RUN npm install --production && npm install -g typescript typescript-formatter && npm run compile
+RUN npm install --production \
+	&& npm install -g typescript typescript-formatter \
+	&& npm install @types/express --save-dev \
+	&& npm run compile
 
 COPY pebl-services/dockerConfig/startServices.sh /srv/startServices.sh
-RUN chmod 755 /srv/startServices.sh
+RUN mv dockerConfig/startServices.sh ./startServices.sh && chmod 755 ./startServices.sh
 
-#COPY pebl-services/dist /srv/dist/
-COPY pebl-services/src/serverConfig.json /srv/dist/serverConfig.json
+COPY pebl-services/src/sampleServerConfig.json /srv/dist/serverConfig.json
 
 ENTRYPOINT ["/srv/startServices.sh"]
